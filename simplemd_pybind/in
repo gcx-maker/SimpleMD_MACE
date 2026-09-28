@@ -1,0 +1,21 @@
+structurefile .\result_1\md_ac_data.xyz
+outputfile .\result_1\output.xyz
+temperature 300
+timestep 0.5
+friction 0.10
+cutoff 7.0
+skin  0.0
+nstep 100
+nconfig 10 .\result_1\trajectory.xyz
+nstat   10 .\result_1\energies.dat
+wrapatoms T
+idum -42
+maxneighbor 100
+ensemble NVE
+potential MACE
+
+#atom type
+atomtype 0 C 12.011 6
+atomtype 1 H 1.008 1
+atomtype 2 N 14.007 7
+atomtype 3 O 15.999 8

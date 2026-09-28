@@ -1,0 +1,1 @@
+g++ -std=c++17 *.cpp `           -I"D:\Software\Python\Include" `-I"D:\Python\Pycharm_projects\common_use\.venv\Lib\site-packages\pybind11\include" `-L"D:\Software\Python\libs" `-lpython313 `-o main.exe

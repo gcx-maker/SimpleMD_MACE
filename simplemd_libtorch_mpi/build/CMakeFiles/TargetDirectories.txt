@@ -1,0 +1,3 @@
+D:/C++/simplemd_libtorch_mpi/build/CMakeFiles/main.dir
+D:/C++/simplemd_libtorch_mpi/build/CMakeFiles/ALL_BUILD.dir
+D:/C++/simplemd_libtorch_mpi/build/CMakeFiles/ZERO_CHECK.dir
