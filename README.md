@@ -37,6 +37,18 @@
       
       
       make -j8
+## simplemd_pybind
+      mkdir build
+      
+      cd build
+      
+      
+      cmake .. `
+      -DPython_ROOT_DIR=D:/Software/Python `
+      -Dpybind11_DIR=D:/Python/Pycharm_projects/common_use/.venv/Lib/site-packages/pybind11/share/cmake/pybind11
+      
+      
+      cmake --build . --config Release
 
 # 项目结构
       SimpleMD_MACE
