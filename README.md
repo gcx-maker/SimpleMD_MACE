@@ -106,8 +106,6 @@ SimpleMD_MACE 支持直接在 C++ 中调用 MACE 模型。
 
 # 5. Pybind11版本
 
-# Pybind11版本
-
 simplemd_pybind11 提供 Python/C++ 混合调用模式。
 
 计算流程：
