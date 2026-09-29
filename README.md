@@ -1,22 +1,40 @@
 # SimpleMD_MACE
 
-一个基于 C++ 的轻量级分子动力学（Molecular Dynamics, MD）框架，支持传统经典势函数与机器学习势函数（Machine Learning Potential, MLP）的统一调用。
+一个面向机器学习势函数部署的 C++ 分子动力学框架。
 
-本项目主要探索：
+本项目探索如何将基于 PyTorch 训练的机器学习势函数（以 MACE 为例）
+从 Python 科研环境迁移到 C++ 高性能分子动力学模拟流程中。
 
-- C++ 分子动力学程序设计
-- MACE 机器学习势函数的 C++ 部署
-- LibTorch 调用 TorchScript 模型
-- Python/C++ 混合计算接口
+项目实现了：
+- C++ 分子动力学核心框架
+- LJ 经典势函数计算
+- MACE 模型 LibTorch 推理
+- Pybind11 Python/C++ 混合接口
 - MPI 并行分子动力学计算
-
-目标是构建一个面向 AI for Science 的轻量级、高性能分子模拟框架，实现从 Python 科研工作流向 C++ 高性能计算环境的迁移。
-
-
 ---
 
 # 项目结构
-
+SimpleMD_MACE
+|
+├── simplemd_libtorch_mpi
+│
+│ C++ LibTorch版本
+│
+│ - C++ MD核心
+│ - LJ势函数
+│ - MACE模型推理
+│ - Neighbor List
+│ - MPI通信
+│ - LJ并行计算
+│
+│
+│
+├── simplemd_pybind11
+│
+│ Python/C++混合版本
+│
+│ - Python调用MACE
+│ - C++负责MD积分
 
 ---
 
@@ -70,8 +88,8 @@ pair_coeff 1 1 3.624 0.0140
 
 # 3. MACE机器学习势函数支持
 
-
 SimpleMD_MACE 支持直接在 C++ 中调用 MACE 模型。
+
 
 # 4. LibTorch C++模型部署
 
@@ -88,7 +106,27 @@ SimpleMD_MACE 支持直接在 C++ 中调用 MACE 模型。
 
 # 5. Pybind11版本
 
-`simplemd_pybind11`采用pybind11 mace模型在python侧进行调用 积分 位置更新等在c++侧进行调用
+# Pybind11版本
+
+simplemd_pybind11 提供 Python/C++ 混合调用模式。
+
+计算流程：
+
+Python
+ |
+ | MACE inference
+ |
+Pybind11
+ |
+C++ MD Core
+ |
+Integrator
+
+该版本主要用于：
+
+- 快速验证C++ MD框架
+- 对比Python和C++性能
+- 保持Python生态兼容性
 
 ---
 
