@@ -86,27 +86,10 @@ SimpleMD_MACE 从底层实现分子动力学核心流程：
 
 ---
 
-# 3. MACE机器学习势函数支持
 
-SimpleMD_MACE 支持直接在 C++ 中调用 MACE 模型。
+# 3. Pybind版本
 
-
-# 4. LibTorch C++模型部署
-
-项目采用 TorchScript + LibTorch 实现 MACE 模型部署。
-
-相比传统 Python 调用方式：
-
-优势：
-
-- 无需 Python运行环境
-- C++原生集成
-- 更容易进行性能优化
----
-
-# 5. Pybind11版本
-
-simplemd_pybind11 提供 Python/C++ 混合调用模式。
+simplemd_pybind 提供 Python/C++ 混合调用模式。
 
 计算流程：
 
@@ -128,7 +111,7 @@ simplemd_pybind11 提供 Python/C++ 混合调用模式。
 
 ---
 
-# 6. MPI并行版本
+# 4. MPI并行版本
 `simplemd_libtorch_mpi` 提供MPI并行MD框架。
 
 目前实现：
