@@ -14,27 +14,27 @@
 ---
 
 # 项目结构
-SimpleMD_MACE
-|
-├── simplemd_libtorch_mpi
-│
-│ C++ LibTorch版本
-│
-│ - C++ MD核心
-│ - LJ势函数
-│ - MACE模型推理
-│ - Neighbor List
-│ - MPI通信
-│ - LJ并行计算
-│
-│
-│
-├── simplemd_pybind11
-│
-│ Python/C++混合版本
-│
-│ - Python调用MACE
-│ - C++负责MD积分
+      SimpleMD_MACE
+      |
+      ├── simplemd_libtorch_mpi
+      │
+      │ C++ LibTorch版本
+      │
+      │ - C++ MD核心
+      │ - LJ势函数
+      │ - MACE模型推理
+      │ - Neighbor List
+      │ - MPI通信
+      │ - LJ并行计算
+      │
+      │
+      │
+      ├── simplemd_pybind11
+      │
+      │ Python/C++混合版本
+      │
+      │ - Python调用MACE
+      │ - C++负责MD积分
 
 ---
 
@@ -76,13 +76,13 @@ SimpleMD_MACE 从底层实现分子动力学核心流程：
 - MPI并行计算
 输入示例：
 
-potential LJ
-atomtype 0 Ar 39.948 18
-atomtype 1 Kr 83.798 36
-
-pair_coeff 0 0 3.405 0.0104
-pair_coeff 0 1 3.5145 0.01207
-pair_coeff 1 1 3.624 0.0140
+      potential LJ
+      atomtype 0 Ar 39.948 18
+      atomtype 1 Kr 83.798 36
+      
+      pair_coeff 0 0 3.405 0.0104
+      pair_coeff 0 1 3.5145 0.01207
+      pair_coeff 1 1 3.624 0.0140
 
 ---
 
