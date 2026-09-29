@@ -199,29 +199,26 @@ LibTorch CUDA
 System:
 208 atoms
 
-==============================
+
 MD Performance
-==============================
 Total time       : 562.106 s
 Steps            : 20000
 Step time        : 28.105299 ms
 Steps/sec        : 35.58
 Simulation speed : 3.0742 ns/day
-==============================
 
-========== Neighbor Build ==========
+Neighbor Build 
 calls : 1454
 avg   : 7.28378 ms
 min   : 6.25228 ms
 max   : 9.2989 ms
-====================================
-========== MACE Forward ==========
+
+MACE Forward
 calls : 20000
 avg   : 18.711 ms
 min   : 17.3808 ms
 max   : 2032.15 ms
 std   : 22.3867 ms
-==================================
 
 ---
 
@@ -242,8 +239,7 @@ std   : 22.3867 ms
 - [ ] CUDA Kernel优化
 - [ ] MACE算子优化
 - [ ] 多GPU MACE推理
-- [ ] NCCL通信
-- [ ] 大规模分布式AI-MD
+- [ ] 大规模分布式MD
 ---
 
 # 项目背景
