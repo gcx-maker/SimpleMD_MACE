@@ -37,6 +37,7 @@
       
       
       make -j8
+      DTorch_DIR要改成自己电脑中libtorch所在的位置
 ## simplemd_pybind
       mkdir build
       
@@ -49,7 +50,7 @@
       
       
       cmake --build . --config Release
-
+      DPython_ROOT_DIR和Dpybind11_DIR要改成自己电脑对应的python解释器和pybind11所在的位置
 # 项目结构
       SimpleMD_MACE
       |
