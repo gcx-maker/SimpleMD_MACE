@@ -29,62 +29,36 @@ SimpleMD_MACE 从底层实现分子动力学核心流程：
        初始结构
           |
           v
-   Neighbor List构建
+      邻居列表构建
           |
           v
-    力计算模块
-          |
-  ----------------
-  |              |
-  v              v
- LJ            MACE
-  |              |
-  ----------------
+      力计算模块(LJ MACE)
           |
           v
-    MD时间积分
+      MD时间积分
           |
           v
-    新的原子位置
+     新的原子位置
 
 目前支持：
-
 - NVE 系综
 - Langevin 温控
 - 周期性边界条件
 - Verlet Neighbor List
 - Linked-cell neighbor search
-- 能量与温度输出
-
-
+- 能量与温度轨迹输出
 ---
 
 # 2. Lennard-Jones 势函数
-
-
 项目实现经典 Lennard-Jones 势函数：
-
-\[
-E(r)=4\epsilon
-\left[
-(\frac{\sigma}{r})^{12}
--
-(\frac{\sigma}{r})^6
-\right]
-\]
-
-
 支持：
-
-- 双体相互作用
+- 多组分相互作用
 - 周期边界
 - Neighbor List优化
 - MPI并行计算
-
-
 输入示例：
-potential LJ
 
+potential LJ
 atomtype 0 Ar 39.948 18
 atomtype 1 Kr 83.798 36
 
@@ -99,10 +73,7 @@ pair_coeff 1 1 3.624 0.0140
 
 SimpleMD_MACE 支持直接在 C++ 中调用 MACE 模型。
 
----
-
 # 4. LibTorch C++模型部署
-
 
 项目采用 TorchScript + LibTorch 实现 MACE 模型部署。
 
@@ -113,62 +84,21 @@ SimpleMD_MACE 支持直接在 C++ 中调用 MACE 模型。
 - 无需 Python运行环境
 - C++原生集成
 - 更容易进行性能优化
-- 方便进一步接入CUDA/MPI
-
-
 ---
 
 # 5. Pybind11版本
 
-
-项目同时提供 Python/C++ 混合版本。
-
-用途：
-
-- 快速验证C++实现
-- 与Python科研流程结合
-- 与ASE等工具进行接口测试
-
+`simplemd_pybind11`采用pybind11 mace模型在python侧进行调用 积分 位置更新等在c++侧进行调用
 
 ---
 
 # 6. MPI并行版本
-
-
 `simplemd_libtorch_mpi` 提供MPI并行MD框架。
 
 目前实现：
 - MPI进程管理
 - 原子数据通信
 - LJ势函数并行计算
-
-并行模式：
-         MPI World
-
-
-    +-------------+
-
-    |             |
-
-  Rank0        Rank1
-
-    |             |
-
-Atom set A    Atom set B
-
-
-    |             |
-
-    +-------------+
-
-          |
-
-    Parallel Force
-
-          |
-
-    MD Update
-
 
 当前MACE推理仍采用单进程模式。
 
@@ -179,12 +109,9 @@ Atom set A    Atom set B
 - 分布式Neighbor构建
 - 大规模AI-MD模拟
 
-
 ---
 
 # 输入文件格式
-
-
 SimpleMD_MACE通过输入文件控制模拟参数。
 
 
@@ -212,7 +139,6 @@ nstat 100 ./result/energies.dat
 ensemble NVE
 
 potential LJ
-
 
 ---
 
@@ -244,7 +170,6 @@ enable_profile T
 
 # 性能分析
 
-
 项目支持C++端性能统计：
 enable_profile T
 
@@ -254,15 +179,6 @@ enable_profile T
 - Neighbor List构建时间
 - MACE Forward时间
 - 单步MD耗时
-
-
-示例：
-Neighbor Build
-
-MACE Forward
-
-Total Step Time
-
 
 ---
 
@@ -283,54 +199,62 @@ LibTorch CUDA
 System:
 208 atoms
 
-Performance:
-~3 ns/day
+==============================
+MD Performance
+==============================
+Total time       : 562.106 s
+Steps            : 20000
+Step time        : 28.105299 ms
+Steps/sec        : 35.58
+Simulation speed : 3.0742 ns/day
+==============================
 
+========== Neighbor Build ==========
+calls : 1454
+avg   : 7.28378 ms
+min   : 6.25228 ms
+max   : 9.2989 ms
+====================================
+========== MACE Forward ==========
+calls : 20000
+avg   : 18.711 ms
+min   : 17.3808 ms
+max   : 2032.15 ms
+std   : 22.3867 ms
+==================================
 
 ---
 
 # 开发路线
 
-
 目前完成：
 
-- [x] C++ MD框架
-- [x] LJ势函数
-- [x] MACE势函数调用
-- [x] LibTorch模型部署
-- [x] Neighbor List
-- [x] Linked-cell优化
-- [x] Pybind11接口
-- [x] MPI并行框架
-
+- [√] C++ MD框架
+- [√] LJ势函数
+- [√] MACE势函数调用
+- [√] LibTorch模型部署
+- [√] Neighbor List
+- [√] Linked-cell优化
+- [√] Pybind11接口
+- [√] MPI并行框架
 
 未来计划：
-
 - [ ] CUDA Kernel优化
 - [ ] MACE算子优化
 - [ ] 多GPU MACE推理
 - [ ] NCCL通信
 - [ ] 大规模分布式AI-MD
-
-
 ---
 
 # 项目背景
 
+近年来，机器学习势函数（Machine Learning Potential, MLP）能够在接近第一性原理计算精度的同时，大幅降低分子动力学模拟的计算成本。
 
-近年来机器学习势函数（Machine Learning Potential）能够提供接近第一性原理计算精度，同时显著降低计算成本。
+然而，目前许多机器学习势函数仍主要依赖 Python 生态进行训练和推理。虽然可以通过 ASE 等 Python 分子模拟接口直接调用，但在大规模分子动力学模拟中，Python 层的计算开销可能限制模拟效率。
 
-然而目前大量机器学习势函数仍依赖Python生态。
+另一方面，LAMMPS 等高性能分子动力学软件虽然支持机器学习势函数，但其接口封装和调用流程相对复杂，对于希望深入理解机器学习势函数部署流程以及进行二次开发的研究者存在一定学习成本。
 
-
-构建面向 AI for Science 的高性能分子模拟基础框架。
-
-
----
-
-# Author
-
-gcx-maker
+本项目旨在探索机器学习势函数在 C++ 分子动力学框架中的部署方式，通过 LibTorch 调用 MACE 模型，实现从 Python 训练环境到 C++ 高性能模拟环境的连接，并作为学习和研究机器学习势函数高性能部署、分子动力学模拟以及科学计算优化的项目。
 
 
 Research interests:
