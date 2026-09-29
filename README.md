@@ -209,9 +209,7 @@ enable_profile T
 项目支持C++端性能统计：
 enable_profile T
 
-
 可以统计：
-
 - Neighbor List构建时间
 - MACE Forward时间
 - 单步MD耗时
@@ -236,25 +234,25 @@ System:
 208 atoms
 
 
-MD Performance
-Total time       : 562.106 s
-Steps            : 20000
-Step time        : 28.105299 ms
-Steps/sec        : 35.58
-Simulation speed : 3.0742 ns/day
+      MD Performance
+      Total time       : 562.106 s
+      Steps            : 20000
+      Step time        : 28.105299 ms
+      Steps/sec        : 35.58
+      Simulation speed : 3.0742 ns/day
 
-Neighbor Build\n
-calls : 1454\n
-avg   : 7.28378 ms\n
-min   : 6.25228 ms\n
-max   : 9.2989 ms\n
+      Neighbor Build
+      calls : 1454
+      avg   : 7.28378 ms
+      min   : 6.25228 ms
+      max   : 9.2989 ms
 
-MACE Forward
-calls : 20000
-avg   : 18.711 ms
-min   : 17.3808 ms
-max   : 2032.15 ms
-std   : 22.3867 ms
+      MACE Forward
+      calls : 20000
+      avg   : 18.711 ms
+      min   : 17.3808 ms
+      max   : 2032.15 ms
+      std   : 22.3867 ms
 
 ---
 
