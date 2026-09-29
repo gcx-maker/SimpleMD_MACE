@@ -13,6 +13,31 @@
 - MPI 并行分子动力学计算
 ---
 
+# 编译
+## simplemd_libtorch_mpi
+## Windows
+      mkdir build
+      
+      cd build
+      
+      
+      cmake .. ^
+      -DTorch_DIR=D:/Software/libtorch/libtorch210/libtorch/share/cmake/Torch
+      
+      
+      cmake --build . --config Release
+## Linux
+      mkdir build
+      
+      cd build
+      
+      
+      cmake .. \
+      -DTorch_DIR=/path/to/libtorch/share/cmake/Torch
+      
+      
+      make -j8
+
 # 项目结构
       SimpleMD_MACE
       |
