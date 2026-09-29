@@ -243,11 +243,11 @@ Step time        : 28.105299 ms
 Steps/sec        : 35.58
 Simulation speed : 3.0742 ns/day
 
-Neighbor Build 
-calls : 1454
-avg   : 7.28378 ms
-min   : 6.25228 ms
-max   : 9.2989 ms
+Neighbor Build\n
+calls : 1454\n
+avg   : 7.28378 ms\n
+min   : 6.25228 ms\n
+max   : 9.2989 ms\n
 
 MACE Forward
 calls : 20000
@@ -278,21 +278,3 @@ std   : 22.3867 ms
 - [ ] 大规模分布式MD
 ---
 
-# 项目背景
-
-近年来，机器学习势函数（Machine Learning Potential, MLP）能够在接近第一性原理计算精度的同时，大幅降低分子动力学模拟的计算成本。
-
-然而，目前许多机器学习势函数仍主要依赖 Python 生态进行训练和推理。虽然可以通过 ASE 等 Python 分子模拟接口直接调用，但在大规模分子动力学模拟中，Python 层的计算开销可能限制模拟效率。
-
-另一方面，LAMMPS 等高性能分子动力学软件虽然支持机器学习势函数，但其接口封装和调用流程相对复杂，对于希望深入理解机器学习势函数部署流程以及进行二次开发的研究者存在一定学习成本。
-
-本项目旨在探索机器学习势函数在 C++ 分子动力学框架中的部署方式，通过 LibTorch 调用 MACE 模型，实现从 Python 训练环境到 C++ 高性能模拟环境的连接，并作为学习和研究机器学习势函数高性能部署、分子动力学模拟以及科学计算优化的项目。
-
-
-Research interests:
-
-- AI for Science
-- Machine Learning Potential
-- Molecular Dynamics
-- High Performance Computing
-- C++ Scientific Computing
